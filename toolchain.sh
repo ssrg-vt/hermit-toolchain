@@ -96,7 +96,7 @@ read -p "End of Hermit-Bootstrap"
 if [ ! -d "tmp/newlib" ]; then
 mkdir -p tmp/newlib
 cd tmp/newlib
-CC="$PREFIX/usr/local/bin/clang" ../../newlib/configure --target=$TARGET --prefix=$PREFIX --disable-shared --disable-multilib --enable-lto --enable-newlib-hw-fp --enable-newlib-io-c99-formats --enable-newlib-multithread && make $NJOBS && make install
+CC="$PREFIX/usr/local/bin/clang" ../../newlib/configure --target=$TARGET --prefix=$PREFIX --disable-shared --disable-multilib --enable-lto --enable-newlib-hw-fp --enable-newlib-io-c99-formats --enable-newlib-multithread && make $NJOBS && PATH=$PATH:$PREFIX/bin make install
 cd -
 fi
 read -p "End of Newlib"

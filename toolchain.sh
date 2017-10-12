@@ -41,6 +41,7 @@ git clone $CLONE_DEPTH https://github.com/RWTH-OS/gcc.git
 wget ftp://gcc.gnu.org/pub/gcc/infrastructure/isl-0.15.tar.bz2 -O isl-0.15.tar.bz2
 tar jxf isl-0.15.tar.bz2
 mv isl-0.15 gcc/isl
+./gcc/contrib/download_prerequisites
 fi
 
 if [ ! -d "hermit" ]; then
@@ -96,7 +97,7 @@ read -p "End of Hermit-Bootstrap"
 if [ ! -d "tmp/newlib" ]; then
 mkdir -p tmp/newlib
 cd tmp/newlib
-CC="$PREFIX/usr/local/bin/clang" ../../newlib/configure --target=$TARGET --prefix=$PREFIX --disable-shared --disable-multilib --enable-lto --enable-newlib-hw-fp --enable-newlib-io-c99-formats --enable-newlib-multithread && make $NJOBS && PATH=$PATH:$PREFIX/bin make install
+CC="$PREFIX/usr/local/bin/clang" ../../newlib/configure --target=$TARGET --prefix=$PREFIX --disable-shared --disable-multilib --enable-lto --enable-newlib-hw-fp --enable-newlib-io-c99-formats --enable-newlib-multithread && make $NJOBS && make install
 cd -
 fi
 read -p "End of Newlib"

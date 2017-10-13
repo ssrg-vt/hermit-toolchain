@@ -55,7 +55,7 @@ fi
 if [ ! -d "pte" ]; then
 git clone $CLONE_DEPTH https://github.com/RWTH-OS/pthread-embedded.git pte
 cd pte
-./configure --target=$TARGET --prefix=$PREFIX
+CC_FOR_TARGET="$PREFIX/usr/local/bin/clang" ./configure --target=$TARGET --prefix=$PREFIX
 cd -
 fi
 
@@ -103,7 +103,7 @@ fi
 read -p "End of Newlib"
 
 cd pte
-make && make install
+CC_FOR_TARGET="$PREFIX/usr/local/bin/clang" make && make install
 cd ..
 read -p "End of PTE"
 

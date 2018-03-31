@@ -105,7 +105,7 @@ if [ ! -d "tmp/hermit" ]; then
 mkdir -p tmp/hermit
 cd tmp/hermit
 cmake -DHERMIT_PREFIX=$PREFIX -DCMAKE_INSTALL_PREFIX=$PREFIX -DBOOTSTRAP=true ../../hermit
-make hermit-bootstrap
+make hermit-bootstrap $NJOBS
 make hermit-bootstrap-install && echo "success"
 cd -
 fi
@@ -121,7 +121,7 @@ fi
 #read -p "End of Newlib"
 
 cd pte
-CC_FOR_TARGET="$PREFIX/usr/local/bin/clang" make && make install && echo "success"
+CC_FOR_TARGET="$PREFIX/usr/local/bin/clang" make $NJOBS && make install && echo "success"
 cd ..
 #read -p "End of PTE"
 
@@ -142,7 +142,7 @@ export CFLAGS_FOR_TARGET="-m64 -O3 -ftree-vectorize $ARCH_OPT -target x86_64-her
 mkdir -p tmp/final
 cd tmp/final
 cmake -DHERMIT_PREFIX=$PREFIX -DMTUNE=native ../../hermit
-make
+make $NJOBS
 make install 
 cd -
 fi

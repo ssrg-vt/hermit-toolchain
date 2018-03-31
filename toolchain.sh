@@ -149,3 +149,12 @@ fi
 #read -p "End of Final"
 
 cd ..
+
+# Gold: bfd
+cd build/binutils/bfd && ./configure && make $NJOBS && cd -
+
+# Gold: libiberty
+cd build/binutils/libiberty && ./configure && make $NJOBS && cd -
+
+# Gold
+cd build/binutils/gold && ./configure && make $NJOBS && cd -

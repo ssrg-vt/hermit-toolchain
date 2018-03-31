@@ -24,7 +24,7 @@ export CC_FOR_TARGET="$PREFIX/usr/local/bin/clang"
 export PATH
 
 # Checks prerequisites
-res=`cmake --version | grep version | sed -re "s/^cmake version ([0-9])\.([0-9])\.([0-9])$/\1\2/"`
+res=`cmake --version | grep version | sed -rn "s/^cmake version ([0-9])\.([0-9]+)\.([0-9]+)$/\1\2/p"`
 if [[ "$res" == "" || "$res" -lt "37" ]]; then
 	echo "Please install cmake > 3.7"
 	exit

@@ -36,6 +36,13 @@ if [ "$res" == "" ]; then
 	exit 
 fi
 
+# Pierre: in some situations libomp fails to buld as it cannto find asm/errno.h
+# this seems to solve the issue
+if [ -d "/usr/include/asm" ]; then
+	  echo "/usr/include/asm does not exist, trying to symlink from /usr/include/asm-generic"
+	  sudo ln -s /usr/include/asm-generic /usr/include/asm
+fi
+
 echo "Build bootstrap toolchain for $TARGET with $NJOBS jobs for $PREFIX"
 sleep 1
 
